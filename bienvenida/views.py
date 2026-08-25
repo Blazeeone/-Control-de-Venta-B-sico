@@ -5,9 +5,7 @@ from .models import Producto
 
 
 def inicio(request):
-    return HttpResponse(
-        "Hola mundo desde Django"
-    )
+    return HttpResponse("Hola mundo desde Django")
 
 def lista_productos(request):
     productos = Producto.objects.all()
