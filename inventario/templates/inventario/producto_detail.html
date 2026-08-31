@@ -1,0 +1,9 @@
+
+{% extends 'inventario/base.html' %}
+{% block content %}
+<h1>{{ object.nombre }}</h1>
+<p>Precio: ${{ object.precio }}</p>
+<p>{{ object.descripcion }}</p>
+<p>Stock: {{ object.stock }}</p>
+<a href="{% url 'producto_update' object.pk %}">Editar</a>
+{% endblock %}

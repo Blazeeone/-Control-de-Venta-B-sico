@@ -1,0 +1,18 @@
+
+{% extends 'inventario/base.html' %}
+{% block title %}Listado{% endblock %}
+{% block content %}
+<h1>Productos</h1>
+<ul>
+  {% for p in object_list %}
+    <li>
+      <a href="{% url 'producto_detail' p.pk %}">{{ p.nombre }}</a>
+      — ${{ p.precio }} — stock: {{ p.stock }}
+      [<a href="{% url 'producto_update' p.pk %}">Editar</a>]
+      [<a href="{% url 'producto_delete' p.pk %}">Eliminar</a>]
+    </li>
+  {% empty %}
+    <li>No hay productos.</li>
+  {% endfor %}
+</ul>
+{% endblock %}

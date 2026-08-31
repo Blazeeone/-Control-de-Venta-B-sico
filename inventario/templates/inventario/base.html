@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Inventario{% endblock %}</title>
+</head>
+
+<body>
+    <nav>
+        <a href="{% url 'producto_list' %}">Productos</a>
+        <a href="{% url 'producto_create' %}">Nuevo</a>
+    </nav>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+</body>
+
+</html>
