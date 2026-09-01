@@ -1,3 +1,4 @@
+from django.views.decorators.csrf import csrf_protect
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Producto
 from .forms import ProductoForm
@@ -15,15 +16,21 @@ def producto_detail(request, pk):
     return render(request, 'inventario/producto_detail.html', {'object': producto})
 
 # CREATE
+@csrf_protect
 def producto_create(request):
+    """Vista protegida con CSRF"""
     if request.method == 'POST':
         form = ProductoForm(request.POST)
         if form.is_valid():
-            form.save()
+            producto = form.save()
+            messages.success(request, f'Producto "{producto.nombre}" creado exitosamente')
             return redirect('producto_list')
+        else:
+            messages.error(request, 'Por favor corrige los errores en el formulario')
     else:
         form = ProductoForm()
-        return render(request, 'inventario/producto_form.html', {'form': form})
+    
+    return render(request, 'inventario/producto_form.html', {'form': form})
 
 # UPDATE
 def producto_update(request, pk):

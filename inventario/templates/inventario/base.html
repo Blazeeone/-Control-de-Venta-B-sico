@@ -13,7 +13,34 @@
         <a href="{% url 'producto_create' %}">Nuevo</a>
     </nav>
     <main>
-        {% block content %}{% endblock %}
+        {% block content %}
+<div class="card">
+    <div class="card-body">
+        <form method="post" class="needs-validation" novalidate>
+            {% csrf_token %}  <!-- <- Token CSRF obligatorio -->
+            
+            <!-- Campo Nombre -->
+            <div class="mb-3">
+                <label class="form-label">Nombre del Producto</label>
+                {{ form.nombre }}
+            </div>
+            
+            <!-- Campo Precio -->
+            <div class="mb-3">
+                <label class="form-label">Precio</label>
+                <div class="input-group">
+                    <span class="input-group-text">$</span>
+                    {{ form.precio }}
+                </div>
+            </div>
+            
+            <button type="submit" class="btn btn-success">
+                Guardar Producto
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %}
     </main>
 </body>
 
