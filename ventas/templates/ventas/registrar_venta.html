@@ -1,0 +1,33 @@
+{% extends 'ventas/base.html' %}
+
+{% block content %}
+    <h2>Registrar Venta: {{ producto.nombre }}</h2>
+    <p>Stock disponible: <strong>{{ producto.stock }}</strong></p>
+    <p>Precio unitario: <strong>${{ producto.precio }}</strong></p>
+
+    <form method="POST">
+        {% csrf_token %}
+        
+        <label for="cantidad">Cantidad a vender:</label>
+        <input type="number" id="cantidad" name="cantidad" value="1" min="1" max="{{ producto.stock }}" required>
+
+        <h3>Datos del Cliente</h3>
+        <label for="rut">RUT del cliente (requerido para boleta):</label>
+        <input type="text" id="rut" name="rut" required>
+
+        {# Estilo en línea para que el checkbox y el texto queden en la misma línea #}
+        <label style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+            <input type="checkbox" name="es_habitual" style="width: auto; margin: 0;"> 
+            ¿Es cliente habitual? (Si lo es, llena los datos de abajo)
+        </label>
+
+        <label for="nombre">Nombre (opcional):</label>
+        <input type="text" id="nombre" name="nombre">
+
+        <label for="telefono">Teléfono (opcional):</label>
+        <input type="text" id="telefono" name="telefono">
+
+        <button type="submit" class="btn">Confirmar Venta</button>
+        <a href="{% url 'producto_list' %}" class="btn btn-cancel">Cancelar</a>
+    </form>
+{% endblock %}

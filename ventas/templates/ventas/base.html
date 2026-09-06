@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Sistema de Ventas</title>
+    <style>
+        /* Estructura general y tipografía limpia */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #222;
+        }
+        /* Barra de navegación de alto contraste */
+        header {
+            background-color: #1a1a1a;
+            color: white;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 10px;
+            padding: 8px 16px;
+            background-color: #333;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+        nav a:hover {
+            background-color: #555;
+        }
+        /* Contenedor centralizado estilo caja */
+        main {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 25px;
+            background: white;
+            border-radius: 6px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        /* Diseño limpio para el listado de productos */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+            text-align: left;
+        }
+        th {
+            background-color: #1a1a1a;
+            color: white;
+        }
+        /* Botones con colores semánticos */
+        button, .btn {
+            padding: 8px 14px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            color: white;
+            background-color: #28a745; /* Verde por defecto (Vender/Guardar) */
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+        .btn-edit { background-color: #ffc107; color: #111; }
+        .btn-danger { background-color: #dc3545; }
+        .btn-cancel { background-color: #6c757d; }
+        
+        input, select {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Control de Ventas</h1>
+        <nav>
+            <a href="{% url 'producto_list' %}">Ver Productos</a>
+            <a href="{% url 'producto_create' %}">Añadir Producto</a>
+        </nav>
+    </header>
+
+    <main>
+        {% if messages %}
+            <ul style="background: #d4edda; color: #155724; padding: 10px; border-radius: 4px; list-style: none;">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        {% block content %}
+        {% endblock %}
+    </main>
+</body>
+</html>
