@@ -1,11 +1,11 @@
 from django.db import models
 
-# Create your models here.  
 class Producto(models.Model):
-    codigo = models.CharField(max_length=20) # Requerimiento del Caso 2
+    codigo = models.CharField(max_length=20)
     nombre = models.CharField(max_length=64)
-    precio = models.IntegerField(default=0)
-    stock = models.IntegerField(default=0) 
+    # PositiveIntegerField bloquea los números negativos desde la base de datos
+    precio = models.PositiveIntegerField(default=1)
+    stock = models.PositiveIntegerField(default=0) 
 
     def __str__(self):
         return self.nombre

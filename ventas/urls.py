@@ -2,6 +2,8 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
+    # Esta línea soluciona el error 404 cargando el listado en la ruta principal
+    path('', views.producto_list, name='inicio'),
     path('productos/', views.producto_list, name='producto_list'),
     path('productos/nuevo', views.producto_create, name='producto_create'),
     path('productos/<int:pk>/', views.producto_detail, name='producto_detail'),
